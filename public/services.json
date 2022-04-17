@@ -1,0 +1,27 @@
+[
+    {
+      
+      "id": 1,
+      "title": "Wedding Photography",
+      
+      "description": "I will capture all your wedding moments and will deliver you all world class picture of your wedding.",
+      "price": 250,
+      "img": "https://i.ibb.co/wWkJD8v/istockphoto-1171864381-612x612.jpg"
+    },
+    {
+      
+        "id": 2,
+        "title": "Party Photography",
+        "description": "I will Capture yous party photos and then polish them to look brighter then provide you those pictures.",
+        "price": 200,
+        "img": "https://i.ibb.co/rpjpyzq/birthday-party-group-teen-clown-27184188.jpg"
+      },
+      {
+      
+        "id": 3,
+        "title": "Private Photography",
+        "description": "I will take your private photo as you mention to me and secrectly i will work on them and deliver them to you.",
+        "price": 150,
+        "img": "https://i.ibb.co/tD9tT8j/download.jpg"
+      }
+]
