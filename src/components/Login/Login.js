@@ -1,3 +1,4 @@
+import { sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import React, { useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
@@ -15,10 +16,10 @@ const Login = () => {
 
   const navigate = useNavigate();
   // for create user
-  const [createUserWithEmailAndPassword, user, loading, error1] =
+  const [createUserWithEmailAndPassword, user, error1] =
     useCreateUserWithEmailAndPassword(auth);
   // for login user
-  const [signInWithEmailAndPassword, user1, loading1, error2] =
+  const [signInWithEmailAndPassword, user1, error2] =
     useSignInWithEmailAndPassword(auth);
 
   const [registered, setRegistered] = useState(false);
@@ -55,9 +56,28 @@ const Login = () => {
     return navigate("/home");
   }
 
+  // password reset
+
+  const handlePasswordReset = () => {
+    sendPasswordResetEmail(auth, email).then(() => {
+      // console.log("email sent for reset password");
+    });
+  };
+
+  // email verification
+
+  const verifyEmail = () => {
+    sendEmailVerification(auth.currentUser).then(() => {
+      // console.log("email verification sended");
+    });
+  };
+  if (user) {
+    verifyEmail();
+  }
+
   return (
     <div className="py-5 login">
-      <h2 className="py-5">Please {registered ? "Login" : "Register"}</h2>
+      <h2 className="pb-2">Please {registered ? "Login" : "Register"}</h2>
       <form className="w-50 mx-auto" onSubmit={handleFormSubmit}>
         {registered ? (
           ""
@@ -95,7 +115,6 @@ const Login = () => {
             className="form-control"
             id="exampleInputPassword2"
             placeholder="Password"
-            required
           />
         </div>
         {registered ? (
@@ -122,6 +141,13 @@ const Login = () => {
             Already Have An Account ?
           </label>
         </div>
+        {registered ? (
+          <button onClick={handlePasswordReset} className="btn btn-link">
+            Reset password
+          </button>
+        ) : (
+          ""
+        )}
         <p className="text-danger">{error ? error : ""}</p>
         <button type="submit" className="btn btn-primary">
           {registered ? "Login" : "Register"}
