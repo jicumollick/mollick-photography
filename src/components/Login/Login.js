@@ -1,5 +1,5 @@
 import { sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
@@ -10,16 +10,16 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 
 import "./Login.css";
 const Login = () => {
+  let errorMessage;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const navigate = useNavigate();
   // for create user
-  const [createUserWithEmailAndPassword, user, error1] =
+  const [createUserWithEmailAndPassword, user1, error1] =
     useCreateUserWithEmailAndPassword(auth);
   // for login user
-  const [signInWithEmailAndPassword, user1, error2] =
+  const [signInWithEmailAndPassword, user2, error2] =
     useSignInWithEmailAndPassword(auth);
 
   const [registered, setRegistered] = useState(false);
@@ -43,18 +43,22 @@ const Login = () => {
     setRegistered(event.target.checked);
   };
 
-  if (error1) {
-    setError(error1);
-    return;
+  if (error1 || error2) {
+    errorMessage = (
+      <p className="text-danger">
+        Error: {error1?.message} {error2?.message}
+      </p>
+    );
   }
-  if (error2) {
-    setError(error2);
-    console.log(error);
-    return;
-  }
-  if (user1) {
-    return navigate("/home");
-  }
+  useEffect(() => {
+    if (user1) {
+      verifyEmail();
+    }
+    if (user2) {
+      navigate("/home");
+      console.log(user2);
+    }
+  }, [user1, user2, navigate]);
 
   // password reset
 
@@ -71,9 +75,6 @@ const Login = () => {
       // console.log("email verification sended");
     });
   };
-  if (user) {
-    verifyEmail();
-  }
 
   return (
     <div className="py-5 login">
@@ -148,7 +149,7 @@ const Login = () => {
         ) : (
           ""
         )}
-        <p className="text-danger">{error ? error : ""}</p>
+        <div>{errorMessage}</div>
         <button type="submit" className="btn btn-primary">
           {registered ? "Login" : "Register"}
         </button>

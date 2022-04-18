@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 import auth from "../../Firebase/Firebase.init";
 
 const SocialLogin = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
+  const [signInWithGoogle, user, error] = useSignInWithGoogle(auth);
+  const [signInWithGithub, user1, error1] = useSignInWithGithub(auth);
   const navigate = useNavigate();
   let errorMessage = "";
 
