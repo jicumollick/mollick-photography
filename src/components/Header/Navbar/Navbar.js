@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomLink from "../../CustomLink/CustomLink";
 import "./Navbar.css";
 const Navbar = () => {
@@ -63,7 +63,7 @@ const Navbar = () => {
             </ul>
 
             <button
-              className="btn btn-outline-success my-2 my-sm-0 ms-auto"
+              className="btn btn-outline-success text-light my-2 my-sm-0 ms-auto"
               type="submit"
               onClick={() => navigate("/login")}
             >
