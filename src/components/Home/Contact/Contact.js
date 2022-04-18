@@ -12,7 +12,6 @@ const Contact = () => {
               <div class="form-group">
                 <input
                   id="name"
-                  name="name"
                   type="text"
                   placeholder="Your name"
                   class="form-control"
@@ -23,7 +22,6 @@ const Contact = () => {
                 <div class="my-4">
                   <input
                     id="email"
-                    name="email"
                     type="text"
                     placeholder="Your email"
                     class="form-control"
@@ -36,7 +34,6 @@ const Contact = () => {
                   <textarea
                     class="form-control"
                     id="message"
-                    name="message"
                     placeholder="Please write your message here..."
                     rows="5"
                   ></textarea>
