@@ -7,6 +7,9 @@ import {
 import { useNavigate } from "react-router";
 import auth from "../../Firebase/Firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 import "./Login.css";
 const Login = () => {
@@ -64,6 +67,7 @@ const Login = () => {
 
   const handlePasswordReset = () => {
     sendPasswordResetEmail(auth, email).then(() => {
+      toast("Email sended, thanks");
       // console.log("email sent for reset password");
     });
   };
@@ -116,6 +120,7 @@ const Login = () => {
             className="form-control"
             id="exampleInputPassword2"
             placeholder="Password"
+            required
           />
         </div>
         {registered ? (
@@ -155,6 +160,7 @@ const Login = () => {
         </button>
       </form>
       <SocialLogin></SocialLogin>
+      <ToastContainer />
     </div>
   );
 };
