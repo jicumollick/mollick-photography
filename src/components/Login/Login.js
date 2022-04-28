@@ -4,7 +4,7 @@ import {
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import auth from "../../Firebase/Firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,7 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   // for create user
   const [createUserWithEmailAndPassword, user1, error1] =
     useCreateUserWithEmailAndPassword(auth);
@@ -39,6 +39,7 @@ const Login = () => {
       createUserWithEmailAndPassword(email, password);
 
       setRegistered(true);
+
       navigate("/login");
     }
   };
@@ -53,22 +54,13 @@ const Login = () => {
       </p>
     );
   }
-  useEffect(() => {
-    if (user1) {
-      verifyEmail();
-    }
-    if (user2) {
-      navigate("/home");
-      console.log(user2);
-    }
-  }, [user1, user2, navigate]);
 
   // password reset
 
   const handlePasswordReset = () => {
     sendPasswordResetEmail(auth, email).then(() => {
       toast("Email sended, thanks");
-      // console.log("email sent for reset password");
+      console.log("email sent for reset password");
     });
   };
 
@@ -76,9 +68,17 @@ const Login = () => {
 
   const verifyEmail = () => {
     sendEmailVerification(auth.currentUser).then(() => {
-      // console.log("email verification sended");
+      console.log("email verification sended");
     });
   };
+
+  if (user1) {
+    verifyEmail();
+  }
+  if (user2) {
+    navigate("/home", { replace: true });
+    // console.log(user2);
+  }
 
   return (
     <div className="py-5 login">

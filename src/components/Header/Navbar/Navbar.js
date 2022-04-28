@@ -8,6 +8,14 @@ import "./Navbar.css";
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
+
+  const navigateMe = () => {
+    if (user) {
+      signOut(auth);
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="">
       <nav className="navbar  container-fluid navbar-expand-lg navbar-dark bg-dark ">
@@ -72,7 +80,7 @@ const Navbar = () => {
             <button
               className="btn btn-outline-success text-light my-2 my-sm-0 ms-auto"
               type="submit"
-              onClick={user ? () => signOut(auth) : navigate("/login")}
+              onClick={navigateMe}
             >
               {user ? "Logout" : "Login"}
             </button>

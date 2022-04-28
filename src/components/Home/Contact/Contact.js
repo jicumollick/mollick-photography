@@ -5,34 +5,34 @@ const Contact = () => {
     <div className="py-5" id="contact">
       <h2 className="py-md-3">Contact Me</h2>
 
-      <div class="container">
-        <div class="row">
-          <div class="w-50 mx-auto">
-            <form class="">
-              <div class="form-group">
+      <div className="container">
+        <div className="row">
+          <div className="w-50 mx-auto">
+            <form className="">
+              <div className="form-group">
                 <input
                   id="name"
                   type="text"
                   placeholder="Your name"
-                  class="form-control"
+                  className="form-control"
                 />
               </div>
 
-              <div class="form-group">
-                <div class="my-4">
+              <div className="form-group">
+                <div className="my-4">
                   <input
                     id="email"
                     type="text"
                     placeholder="Your email"
-                    class="form-control"
+                    className="form-control"
                   />
                 </div>
               </div>
 
-              <div class="form-group">
-                <div class="">
+              <div className="form-group">
+                <div className="">
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="message"
                     placeholder="Please write your message here..."
                     rows="5"
@@ -40,9 +40,9 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div class="form-group my-2">
-                <div class="">
-                  <button type="submit" class="btn btn-primary ">
+              <div className="form-group my-2">
+                <div className="">
+                  <button type="submit" className="btn btn-primary ">
                     Send
                   </button>
                 </div>
